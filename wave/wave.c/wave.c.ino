@@ -1,3 +1,4 @@
+#include "letters.h"
 #include "FastLED.h"
 
 
@@ -23,7 +24,8 @@
 //
 //////////////////////////////////////////////////
 
-#define NUM_LEDS 8
+#define NUM_LEDS 56
+
 
 // Data pin that led data will be written out over
 #define DATA_PIN 13
@@ -40,38 +42,31 @@ void setup() {
       FastLED.addLeds<WS2811, DATA_PIN, BRG>(leds, NUM_LEDS);
       FastLED.clear();
 }
-int j = 0;
 void loop() {
+  int k;
+  FastLED.clear();
 
-    for (j = 0; j < 100; j++)
-    {
-      for (int i = 0; i < NUM_LEDS;i++)
-    {
-      leds[i] = CRGB(j,j,0);
-      FastLED.show();
-      delay(5);
-    }
-    }
-    for (j; j > 0; j--)
-    {
-      for (int i = 0; i < NUM_LEDS;i++)
+  for (int j = 0; j < 7;j++)
   {
-      leds[i] = CRGB(j,j,0);
+    for (int i = 0; i < 8; i++)
+    {
+      unsigned char a = reverse(Z[j]);
+      k = a >> i;
+      if ((k & 1))
+        leds[8*j+i] = CRGB(255,255,0);
+      //else
+      //  leds[8*j+i] = CRGB(0,0,0);
       FastLED.show();
-      delay(5);
-  }
+      //delay(0);
     }
-    delay(TIME);
-    FastLED.clear();
+  }
+  delay(6000);
+  FastLED.show();//B
 }
 
-/*
-for (unsigned char i = 0;i < NUM_LEDS; i++)
-{
-  leds[i] = CRGB(0,0,0);
-  leds[(i+2)%NUM_LEDS] = CRGB(r,g,b);
-  FastLED.show();
-  delay(TIME);
-  }
+unsigned char reverse(unsigned char b) {
+   b = (b & 0xF0) >> 4 | (b & 0x0F) << 4;
+   b = (b & 0xCC) >> 2 | (b & 0x33) << 2;
+   b = (b & 0xAA) >> 1 | (b & 0x55) << 1;
+   return b;
 }
- */
