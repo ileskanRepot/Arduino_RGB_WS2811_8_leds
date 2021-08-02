@@ -31,7 +31,7 @@
 #define DATA_PIN 13
 // Clock pin only needed for SPI based chipsets when not using hardware SPI
 //#define CLOCK_PIN 8
-#define TIME 200
+#define TIME 800
 CRGB leds[NUM_LEDS];
 
 void setup() {
@@ -42,7 +42,9 @@ void setup() {
       FastLED.addLeds<WS2811, DATA_PIN, BRG>(leds, NUM_LEDS);
       FastLED.clear();
 }
-void loop() {
+
+void print_matrix(unsigned char CHAR[8],unsigned char color_1,unsigned char color_2,unsigned char color_3)
+{
   int k;
   FastLED.clear();
 
@@ -50,19 +52,134 @@ void loop() {
   {
     for (int i = 0; i < 8; i++)
     {
-      unsigned char a = reverse(Z[j]);
+      unsigned char a = reverse(CHAR[j]);
       k = a >> i;
       if ((k & 1))
-        leds[8*j+i] = CRGB(255,255,0);
+        leds[8*j+i] = CRGB(color_1,color_2,color_3);
       //else
       //  leds[8*j+i] = CRGB(0,0,0);
-      FastLED.show();
       //delay(0);
     }
   }
-  delay(6000);
-  FastLED.show();//B
+  FastLED.show();
 }
+
+void loop() {
+  unsigned char color_1 = random8();
+  unsigned char color_2 = random8();
+  unsigned char color_3 = random8();
+  
+  print_matrix(P,color_1,color_2,color_3);
+  
+  delay(TIME);
+  
+  print_matrix(A,color_1,color_2,color_3);
+
+  delay(TIME);
+
+  print_matrix(I,color_1,color_2,color_3);
+
+  delay(TIME);
+
+  print_matrix(V,color_1,color_2,color_3);
+
+  delay(TIME);
+
+  print_matrix(O,color_1,color_2,color_3);
+
+  delay(TIME);
+
+  print_matrix(L,color_1,color_2,color_3);
+
+  delay(TIME);
+
+  print_matrix(A,color_1,color_2,color_3);
+
+  delay(TIME);
+
+  print_matrix(EMP,color_1,color_2,color_3);
+
+  delay(TIME);
+
+}
+
+/*void loop() {
+  unsigned char color_1 = random8();
+  unsigned char color_2 = random8();
+  unsigned char color_3 = random8();
+  
+  print_matrix(E,color_1,color_2,color_3);
+  
+  delay(TIME);
+  
+  print_matrix(S,color_1,color_2,color_3);
+
+  delay(TIME);
+
+  print_matrix(K,color_1,color_2,color_3);
+
+  delay(TIME);
+
+  print_matrix(O,color_1,color_2,color_3);
+
+  delay(TIME);
+
+  print_matrix(EMP,color_1,color_2,color_3);
+
+  delay(TIME);
+
+  print_matrix(A,color_1,color_2,color_3);
+
+  delay(TIME);
+
+    print_matrix(H,color_1,color_2,color_3);
+
+  delay(TIME);
+
+    print_matrix(O,color_1,color_2,color_3);
+
+  delay(TIME);
+
+    print_matrix(EMP,color_1,color_2,color_3);
+
+  delay(TIME);
+
+  print_matrix(O,color_1,color_2,color_3);
+
+  delay(TIME);
+
+  print_matrix(N,color_1,color_2,color_3);
+
+  delay(TIME);
+
+  print_matrix(EMP,color_1,color_2,color_3);
+
+  delay(TIME);
+
+
+  print_matrix(A,color_1,color_2,color_3);
+
+  delay(TIME);
+
+
+  print_matrix(L,color_1,color_2,color_3);
+
+  delay(TIME);
+
+  
+  print_matrix(F,color_1,color_2,color_3);
+
+  delay(TIME);
+
+  
+  print_matrix(A,color_1,color_2,color_3);
+
+  delay(TIME);
+
+    print_matrix(EMP,color_1,color_2,color_3);
+
+  delay(TIME);
+}*/
 
 unsigned char reverse(unsigned char b) {
    b = (b & 0xF0) >> 4 | (b & 0x0F) << 4;
