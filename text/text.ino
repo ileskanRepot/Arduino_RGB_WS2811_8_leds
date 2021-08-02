@@ -64,12 +64,132 @@ void print_matrix(unsigned char CHAR[8],unsigned char color_1,unsigned char colo
   FastLED.show();
 }
 
-void print_word()
+void print_text(String text,unsigned char color_1,unsigned char color_2,unsigned char color_3,int dela)
 {
-  
+    text.toUpperCase();
+    for (int i = 0; text[i] != '\0';i++)
+    {
+      switch (text[i])  {
+        case 'A':
+          print_matrix(A,color_1,color_2,color_3);
+          break;
+
+        case 'B':  
+          print_matrix(B,color_1,color_2,color_3);        
+          break;
+
+        case 'C':  
+          print_matrix(C,color_1,color_2,color_3);
+          break;
+
+        case 'D':  
+          print_matrix(D,color_1,color_2,color_3);
+          break;
+
+        case 'E':
+          print_matrix(E,color_1,color_2,color_3);
+          break;
+
+        case 'F':  
+          print_matrix(F,color_1,color_2,color_3);
+          break;
+
+        case 'G':
+          print_matrix(G,color_1,color_2,color_3);
+          break;
+
+        case 'H':
+          print_matrix(H,color_1,color_2,color_3);
+          break;
+
+        case 'I':
+          print_matrix(I,color_1,color_2,color_3);
+          break;
+
+        case 'J':
+          print_matrix(J,color_1,color_2,color_3);
+          break;
+
+        case 'K':
+          print_matrix(K,color_1,color_2,color_3);
+          break;
+
+        case 'L':
+          print_matrix(L,color_1,color_2,color_3);
+          break;
+
+        case 'M':
+          print_matrix(M,color_1,color_2,color_3);
+          break;
+
+        case 'N':
+          print_matrix(N,color_1,color_2,color_3);
+          break;
+
+        case 'O':
+          print_matrix(O,color_1,color_2,color_3);
+          break;
+
+        case 'P':
+          print_matrix(P,color_1,color_2,color_3);
+          break;
+
+        case 'Q':
+          print_matrix(Q,color_1,color_2,color_3);
+          break;
+
+        case 'R':
+          print_matrix(R,color_1,color_2,color_3);
+          break;
+
+        case 'S':
+          print_matrix(S,color_1,color_2,color_3);
+          break;
+
+        case 'T':
+          print_matrix(T,color_1,color_2,color_3);
+          break;
+
+        case 'U':
+          print_matrix(U,color_1,color_2,color_3);
+          break;
+
+        case 'V':
+          print_matrix(V,color_1,color_2,color_3);
+          break;
+
+        case 'W':
+          print_matrix(W,color_1,color_2,color_3);
+          break;
+
+        case 'X':
+          print_matrix(X,color_1,color_2,color_3);
+          break;
+
+        case 'Y':
+          print_matrix(Y,color_1,color_2,color_3);
+          break;
+
+        case 'Z':
+          print_matrix(Z,color_1,color_2,color_3);
+          break;
+        
+        default:
+          print_matrix(EMP,color_1,color_2,color_3);
+      }
+      delay(dela);
+    }
 }
 
-void loop() {
+void loop()
+{
+  unsigned char color_1 = random8();
+  unsigned char color_2 = random8();
+  unsigned char color_3 = random8();
+  print_text("PAIVOLA \n",color_1,color_2,color_3,TIME);
+}
+
+/*void loop() {
   unsigned char color_1 = random8();
   unsigned char color_2 = random8();
   unsigned char color_3 = random8();
@@ -106,7 +226,7 @@ void loop() {
 
   delay(TIME);
 
-}
+}*\
 
 /*void loop() {
   unsigned char color_1 = random8();
